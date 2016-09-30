@@ -4,15 +4,43 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>net.ddns.dustriel</groupId>
+    <parent>
+        <groupId>org.jenkins-ci.plugins</groupId>
+        <artifactId>plugin</artifactId>
+        <version>1.413</version>
+    </parent>
+
     <artifactId>onesky</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>hpi</packaging>
 
     <name>OneSky Jenkins plugin</name>
     <description>A Jenkins plugin to ease the process of keeping a project's translation resources in sync when using
         the onesky cloud solution to localization workflow.
     </description>
 
-    <v
+    <url>https://wiki.jenkins-ci.org/display/JENKINS/Onesky+Plugin</url>
+
+    <licenses>
+        <license>
+            <name>GNU LESSER GENERAL PUBLIC LICENSE</name>
+            <url>https://opensource.org/licenses/lgpl-3.0.html</url>
+            <comments>All source code shared under this repository is licenced uder LGPL v3</comments>
+        </license>
+    </licenses>
+
+    <scm>
+        <connection>scm:git:https://github.com/ricardoespsanto/onesky-jenkins-plugin.git</connection>
+        <developerConnection>scm:git:https://github.com/ricardoespsanto/onesky-jenkins-plugin.git</developerConnection>
+        <url>https://github.com/ricardoespsanto/onesky-jenkins-plugin</url>
+    </scm>
+
+    <developers>
+        <developer>
+            <id>ricardoespsanto</id>
+            <name>Ricardo Espirito Santo</name>
+            <email>ricardoespsanto@gmail.com</email>
+        </developer>
+    </developers>
 
 </project>
