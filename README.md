@@ -1,6 +1,9 @@
-# onesky-jenkins-plugin
-A Jenkins plugin to ease the process of keeping a project's translation resources in sync when using the onesky cloud solution to localization workflow.
+# A Jenkins OneSky Plugin page
+A Jenkins plugin to ease the process of keeping a project's translation resources in sync when using the [OneSky](https://oneskyapp.com) cloud solution to localization workflow.
 
 
-# Jenkins plugin page
-Also check the jenkins plugin https://wiki.jenkins-ci.org/display/JENKINS/Onesky+Plugin page for additional information
+# Jenkins Plugin Wiki Page
+Also check the jenkins plugin [page](https://wiki.jenkins-ci.org/display/JENKINS/Onesky+Plugin) for additional information.
+
+# Attribution
+This is an unofficial plugin and it is not endorsed or supported by OneSky or any members of the organisation.
