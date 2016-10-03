@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
         <groupId>org.jenkins-ci.plugins</groupId>
         <artifactId>plugin</artifactId>
-        <version>1.413</version>
+        <version>2.15</version>
     </parent>
 
     <artifactId>onesky</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>hpi</packaging>
+
+    <properties>
+        <jenkins.version>2.7.4</jenkins.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
 
     <name>OneSky Jenkins plugin</name>
     <description>A Jenkins plugin to ease the process of keeping a project's translation resources in sync when using
@@ -23,9 +27,9 @@
 
     <licenses>
         <license>
-            <name>GNU LESSER GENERAL PUBLIC LICENSE</name>
-            <url>https://opensource.org/licenses/lgpl-3.0.html</url>
-            <comments>All source code shared under this repository is licenced uder LGPL v3</comments>
+            <name>Apache License 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+            <comments>All source code shared under this repository is licenced under Apache License 2.0</comments>
         </license>
     </licenses>
 
@@ -42,5 +46,20 @@
             <email>ricardoespsanto@gmail.com</email>
         </developer>
     </developers>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.10</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.mashape.unirest</groupId>
+            <artifactId>unirest-java</artifactId>
+            <version>1.4.9</version>
+        </dependency>
+    </dependencies>
 
 </project>
