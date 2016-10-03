@@ -24,10 +24,9 @@ import hudson.tasks.Builder;
 import javax.annotation.Nonnull;
 
 /**
- * Created by ricardo on 03/10/2016.
+ * A descriptor for the plugin
  */
-@Extension
-public class OneSkyPluginDescriptor extends BuildStepDescriptor<Builder> {
+@Extension public class OneSkyPluginDescriptor extends BuildStepDescriptor<Builder> {
 
 	@Nonnull @Override public String getDisplayName() {
 		return "One Sky";
