@@ -16,40 +16,34 @@
 
 package org.jenkinsci.plugins.connection;
 
+import java.util.Map;
+
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 
-import java.util.Map;
+import lombok.SneakyThrows;
 
 /**
  * A Wrapper around the implementation of the REST Call to the one sky services
  */
-public class RESTCaller {
+class RESTCaller {
 
 	private RESTCaller() {
 		// Preventing instantiation
 	}
 
-	protected static HttpResponse<JsonNode> makeTheCall(Map<String, String> headers, String method, String endpoint,
+	@SneakyThrows(UnirestException.class)
+	static HttpResponse<JsonNode> makeTheCall(Map<String, String> headers, String method, String endpoint,
 			Map<String, String> arguments) {
 		if (arguments == null) {
-			try {
-				return Unirest.get(endpoint).headers(headers).header("content-type", "application/json").asJson();
-			} catch (UnirestException e) {
-				e.printStackTrace();
-			}
+			return Unirest.get(endpoint).headers(headers).header("content-type", "application/json").asJson();
 		}
-		try {
-			return Unirest.get(endpoint).header("content-type", "application/json").headers(headers).asJson();
-		} catch (UnirestException e) {
-			e.printStackTrace();
-		}
-		return null;
+		return Unirest.get(endpoint).header("content-type", "application/json").headers(headers).asJson();
 	}
 
-	protected static HttpResponse<JsonNode> makeTheCall(Map<String, String> headers, String method, String endpoint) {
+	static HttpResponse<JsonNode> makeTheCall(Map<String, String> headers, String method, String endpoint) {
 		return makeTheCall(headers, method, endpoint, null);
 	}
 }

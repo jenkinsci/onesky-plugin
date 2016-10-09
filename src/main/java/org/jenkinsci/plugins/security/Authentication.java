@@ -16,13 +16,14 @@
 
 package org.jenkinsci.plugins.security;
 
-import lombok.SneakyThrows;
-
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+
+import lombok.SneakyThrows;
 
 /**
  * Create the authentication requirements to make calls to One sky
@@ -53,7 +54,7 @@ public class Authentication {
 	@SneakyThrows(NoSuchAlgorithmException.class) private String generateDevHash() {
 		MessageDigest messageDigest = MessageDigest.getInstance("MD5");
 		String timestampAndSecret = getTimestamp() + credentials.getApiSecret();
-		return messageDigest.digest(timestampAndSecret.getBytes()).toString();
+		return Arrays.toString(messageDigest.digest(timestampAndSecret.getBytes()));
 	}
 
 	private String getTimestamp() {

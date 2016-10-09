@@ -17,17 +17,17 @@
 package org.jenkinsci.plugins.security;
 
 import lombok.AllArgsConstructor;
-import lombok.Value;
+import lombok.Data;
 
 /**
  * A simple immutable class to hold the api keys and secrets
  */
-@Value
+@Data
 @AllArgsConstructor
 class OneSkyAPICredentials {
 
-	private String apiKey;
+    private String apiKey;
 
-	private String apiSecret;
+    private String apiSecret;
 
 }
