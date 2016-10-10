@@ -30,35 +30,34 @@ import lombok.SneakyThrows;
  */
 public class Authentication {
 
-	private static Authentication instance;
+    private static Authentication instance;
 
-	private OneSkyAPICredentials credentials;
+    private String lastUsedTimestamp;
 
-	private String lastUsedTimestamp;
+    public static Authentication getInstance() {
+        if (instance == null) {
+            instance = new Authentication();
+        }
+        return instance;
+    }
 
-	public static Authentication getInstance() {
-		if (instance == null) {
-			instance = new Authentication();
-		}
-		return instance;
-	}
+    public Map<String, String> getAuthentication(String apiKey, String apiSecret) {
+        Map<String, String> authentication = new HashMap<>();
+        authentication.put("api_key", apiKey);
+        authentication.put("timestamp", lastUsedTimestamp);
+        authentication.put("dev_hash", generateDevHash(apiSecret));
+        return authentication;
+    }
 
-	public Map<String, String> getAuthentication() {
-		Map<String, String> authentication = new HashMap<>();
-		authentication.put("api_key", credentials.getApiKey());
-		authentication.put("timestamp", lastUsedTimestamp);
-		authentication.put("dev_hash", generateDevHash());
-		return authentication;
-	}
+    @SneakyThrows(NoSuchAlgorithmException.class)
+    private String generateDevHash(String apiSecret) {
+        MessageDigest messageDigest = MessageDigest.getInstance("MD5");
+        String timestampAndSecret = getTimestamp() + apiSecret;
+        return Arrays.toString(messageDigest.digest(timestampAndSecret.getBytes()));
+    }
 
-	@SneakyThrows(NoSuchAlgorithmException.class) private String generateDevHash() {
-		MessageDigest messageDigest = MessageDigest.getInstance("MD5");
-		String timestampAndSecret = getTimestamp() + credentials.getApiSecret();
-		return Arrays.toString(messageDigest.digest(timestampAndSecret.getBytes()));
-	}
-
-	private String getTimestamp() {
-		lastUsedTimestamp = String.valueOf(new Date().getTime());
-		return lastUsedTimestamp;
-	}
+    private String getTimestamp() {
+        lastUsedTimestamp = String.valueOf(new Date().getTime());
+        return lastUsedTimestamp;
+    }
 }

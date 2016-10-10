@@ -34,20 +34,30 @@ import hudson.model.BuildListener;
 import hudson.tasks.BuildStepDescriptor;
 import hudson.tasks.Builder;
 import hudson.util.FormValidation;
+import lombok.Getter;
+import lombok.Setter;
 import net.sf.json.JSONObject;
 
 /**
  *
  */
+@Getter
+@Setter
 public class OneSkyResourceDownloader extends Builder {
 
     private String projectId;
 
     private String resourcesPath;
 
+    private String apiKey;
+
+    private String apiSecret;
+
     @DataBoundConstructor
-    public OneSkyResourceDownloader(String projectId, String resourcesPath) {
+    public OneSkyResourceDownloader(String projectId, String apiSecret, String apiKey, String resourcesPath) {
         this.projectId = projectId;
+        this.apiSecret = apiSecret;
+        this.apiKey = apiKey;
         this.resourcesPath = resourcesPath;
     }
 
@@ -55,19 +65,11 @@ public class OneSkyResourceDownloader extends Builder {
     public boolean perform(AbstractBuild<?, ?> build, Launcher launcher, BuildListener listener)
             throws InterruptedException, IOException {
 
-        Map<String, String> authentication = Authentication.getInstance().getAuthentication();
+        Map<String, String> authentication = Authentication.getInstance().getAuthentication(apiKey, apiSecret);
 
         TranslationExporter.export(authentication, projectId);
 
         return true;
-    }
-
-    public String getProjectId() {
-        return projectId;
-    }
-
-    public String getResourcesPath() {
-        return resourcesPath;
     }
 
     @Extension
