@@ -17,22 +17,26 @@
 package org.jenkinsci.plugins.connection;
 
 import java.util.Map;
+import java.util.logging.Logger;
 
 /**
  * The implementation of the details to Export translations from One sky
  */
 public class TranslationExporter {
 
-	private static final String HTTP_METHOD = "GET";
+    private static final Logger LOGGER = Logger.getLogger(TranslationExporter.class.getName());
 
-	private static final String BASE_ENDPOINT = "https://platform.api.onesky.io/1/projects/:project_id/translations";
+    private static final String HTTP_METHOD = "GET";
 
-	private TranslationExporter() {
-		// Preventing instantiations
-	}
+    private static final String BASE_ENDPOINT = "https://platform.api.onesky.io/1/projects/:project_id/translations";
 
-	public static void export(Map<String, String> authentication, String projectId) {
-		String endpoint = BASE_ENDPOINT.replace(":project_id", projectId);
-		RESTCaller.makeTheCall(authentication, HTTP_METHOD, endpoint);
-	}
+    private TranslationExporter() {
+        // Preventing instantiations
+    }
+
+    public static void export(Map<String, String> authentication, String projectId) {
+        String endpoint = BASE_ENDPOINT.replace(":project_id", projectId);
+        LOGGER.info("Preparing to export");
+        RESTCaller.makeTheCall(authentication, HTTP_METHOD, endpoint);
+    }
 }

@@ -34,6 +34,7 @@ import hudson.model.BuildListener;
 import hudson.tasks.BuildStepDescriptor;
 import hudson.tasks.Builder;
 import hudson.util.FormValidation;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import net.sf.json.JSONObject;
@@ -72,12 +73,17 @@ public class OneSkyResourceDownloader extends Builder {
         return true;
     }
 
+    @Data
     @Extension
     public static class DescriptorImpl extends BuildStepDescriptor<Builder> {
 
         public DescriptorImpl() {
             load();
         }
+
+        private String apiKey;
+
+        private String apiSecret;
 
         public FormValidation doCheckTarget(@QueryParameter String value) {
             if (value.length() == 0) {
@@ -88,8 +94,9 @@ public class OneSkyResourceDownloader extends Builder {
 
         @Override
         public boolean configure(StaplerRequest req, JSONObject json) throws FormException {
+            req.bindJSON(this, json.getJSONObject("onesky"));
             save();
-            return super.configure(req, json);
+            return true;
         }
 
         @Nonnull

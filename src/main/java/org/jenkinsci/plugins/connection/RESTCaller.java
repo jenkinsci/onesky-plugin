@@ -17,33 +17,40 @@
 package org.jenkinsci.plugins.connection;
 
 import java.util.Map;
+import java.util.logging.Logger;
 
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 
-import lombok.SneakyThrows;
-
 /**
  * A Wrapper around the implementation of the REST Call to the one sky services
  */
 class RESTCaller {
 
-	private RESTCaller() {
-		// Preventing instantiation
-	}
+    private static final Logger LOGGER = Logger.getLogger(RESTCaller.class.getName());
 
-	@SneakyThrows(UnirestException.class)
-	static HttpResponse<JsonNode> makeTheCall(Map<String, String> headers, String method, String endpoint,
-			Map<String, String> arguments) {
-		if (arguments == null) {
-			return Unirest.get(endpoint).headers(headers).header("content-type", "application/json").asJson();
-		}
-		return Unirest.get(endpoint).header("content-type", "application/json").headers(headers).asJson();
-	}
+    private RESTCaller() {
+        // Preventing instantiation
+    }
 
-	static HttpResponse<JsonNode> makeTheCall(Map<String, String> headers, String method, String endpoint) {
-		return makeTheCall(headers, method, endpoint, null);
-	}
+    static HttpResponse<JsonNode> makeTheCall(Map<String, String> headers, String method, String endpoint,
+            Map<String, String> arguments) {
+        LOGGER.fine("Making a " + method + " call to " + endpoint + " with arguments " + arguments + " and headers: "
+                + headers);
+        try {
+            if (arguments == null) {
+                return Unirest.get(endpoint).headers(headers).header("content-type", "application/json").asJson();
+            }
+            return Unirest.get(endpoint).header("content-type", "application/json").headers(headers).asJson();
+        } catch (UnirestException e) {
+            LOGGER.severe("Failed to make a call: " + e.getMessage());
+            return null;
+        }
+    }
+
+    static HttpResponse<JsonNode> makeTheCall(Map<String, String> headers, String method, String endpoint) {
+        return makeTheCall(headers, method, endpoint, null);
+    }
 }
