@@ -49,17 +49,25 @@
 
 
     <dependencies>
+
+        <dependency>
+            <groupId>com.dustriel</groupId>
+            <artifactId>onesky-model</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.dustriel</groupId>
+            <artifactId>onesky-service</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.16.10</version>
             <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>com.mashape.unirest</groupId>
-            <artifactId>unirest-java</artifactId>
-            <version>1.4.9</version>
-        </dependency>
+
     </dependencies>
 
 </project>

@@ -21,4 +21,8 @@
         <f:textbox/>
     </f:entry>
 
+    <f:entry field="resourcesPath" title="Resources Path" description="Path, inside the workspace, where to output the translation files to">
+        <f:textbox/>
+    </f:entry>
+
 </j:jelly>
