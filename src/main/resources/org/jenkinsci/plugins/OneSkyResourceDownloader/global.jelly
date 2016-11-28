@@ -19,10 +19,13 @@
     <f:section title="One Sky Integration" name="onesky">
 
         <f:entry title="${%API Key}" field="apiKey">
-            <f:textbox value="${descriptor.apiKey}" name="apiKey" />
+            <f:textbox checkUrl="'descriptorByName/OneSkyResourceDownloader/validateApiKey?value='+escape(this.value)"
+                       value="${descriptor.apiKey}" name="apiKey"/>
         </f:entry>
         <f:entry title="${%API Secret}" field="apiSecret">
-            <f:textbox value="${descriptor.apiSecret}"/>
+            <f:textbox
+                    checkUrl="'descriptorByName/OneSkyResourceDownloader/validateApiSecret?value='+escape(this.value)"
+                    value="${descriptor.apiSecret}"/>
         </f:entry>
 
     </f:section>

@@ -18,11 +18,13 @@
 <j:jelly xmlns:j="jelly:core" xmlns:f="/lib/form">
 
     <f:entry field="projectId" title="Project Id" description="The Id of the project as given by One Sky">
-        <f:textbox/>
+        <f:textbox checkUrl="'descriptorByName/OneSkyResourceDownloader/validateProjectId?value='+escape(this.value)"/>
     </f:entry>
 
-    <f:entry field="resourcesPath" title="Resources Path" description="Path, inside the workspace, where to output the translation files to">
-        <f:textbox/>
+    <f:entry field="resourcesPath" title="Resources Path"
+             description="Path, inside the workspace, where to output the translation files to">
+        <f:textbox
+                checkUrl="'descriptorByName/OneSkyResourceDownloader/validateResourcePath?value='+escape(this.value)"/>
     </f:entry>
 
 </j:jelly>
