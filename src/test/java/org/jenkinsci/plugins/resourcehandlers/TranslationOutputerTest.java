@@ -60,7 +60,7 @@ public class TranslationOutputerTest {
     @Test
     public void exportingTranslationsToFileWillSucceed() throws IOException, TranslationFileIOException, InterruptedException {
         ProjectLanguage projectLanguage = new ProjectLanguage("code", "englishName", "localName", "locale", "region",
-                true, true, "translationProgress", "uploadedAt", 1L);
+                false, true, "translationProgress", "uploadedAt", 1L);
         String resourcesPath = "src/main/resources";
         String content = "content";
         translationOutputer
