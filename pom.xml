@@ -51,14 +51,14 @@
     <dependencies>
 
         <dependency>
-            <groupId>com.dustriel</groupId>
+            <groupId>com.ricardoespsanto</groupId>
             <artifactId>onesky-model</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>1.3</version>
         </dependency>
         <dependency>
-            <groupId>com.dustriel</groupId>
+            <groupId>com.ricardoespsanto</groupId>
             <artifactId>onesky-service</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>1.0</version>
         </dependency>
 
         <dependency>

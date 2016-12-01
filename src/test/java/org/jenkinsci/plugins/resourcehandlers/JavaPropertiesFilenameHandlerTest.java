@@ -16,6 +16,8 @@
 
 package org.jenkinsci.plugins.resourcehandlers;
 
+import com.onesky.model.ProjectLanguage;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -33,7 +35,9 @@ public class JavaPropertiesFilenameHandlerTest {
     public void generateFileNameFrom() throws Exception {
         String locale = "locale";
         String region = "region";
-        String fileName = jpfH.generateFileNameFrom("base.properties", locale, region);
+        ProjectLanguage projectLanguage = new ProjectLanguage("code", "englishName", "localName", locale, region,
+                false, true, "translationProgress", "uploadedAt", 1L);
+        String fileName = jpfH.generateFileNameFrom("base.properties", projectLanguage);
 
         Assert.assertEquals("base_" + locale + "_" + region.toUpperCase() + ".properties", fileName);
     }
@@ -41,14 +45,18 @@ public class JavaPropertiesFilenameHandlerTest {
     @Test
     public void generateFileNameWithoutRegion() {
         String locale = "locale";
-        String fileName = jpfH.generateFileNameFrom("base.properties", locale, null);
+        ProjectLanguage projectLanguage = new ProjectLanguage("code", "englishName", "localName", locale, "",
+                false, true, "translationProgress", "uploadedAt", 1L);
+        String fileName = jpfH.generateFileNameFrom("base.properties", projectLanguage);
 
         Assert.assertEquals("base_" + locale + ".properties", fileName);
     }
 
     @Test
     public void generateFileNameWithoutLocaleOrRegion() {
-        String fileName = jpfH.generateFileNameFrom("base.properties", null, null);
+        ProjectLanguage projectLanguage = new ProjectLanguage("code", "englishName", "localName", "", "",
+                false, true, "translationProgress", "uploadedAt", 1L);
+        String fileName = jpfH.generateFileNameFrom("base.properties", projectLanguage);
 
         Assert.assertEquals("base.properties", fileName);
     }
